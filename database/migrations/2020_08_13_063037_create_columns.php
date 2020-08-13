@@ -16,7 +16,7 @@ class CreateColumns extends Migration
         Schema::table('clients', function (Blueprint $table) {
             $table->string('name');
             $table->string('last_name');
-            $table->string('cedula')->unique();;
+            $table->integer('cedula')->unique();;
             $table->string('departments');
             $table->string('city');
             $table->string('phone');

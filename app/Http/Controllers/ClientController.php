@@ -39,8 +39,18 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = $request->validate([
+            'name' => 'required|alpha',
+            'last_name' => 'required|min:5|alpha',
+            'cedula' => 'required|unique:clients|min:100000|numeric',
+            'department' => 'required',
+            'city' => 'required',
+            'phone' => 'required|unique:clients|min:1000000000|numeric',
+            'email' => 'required|unique:clients|min:8|email',
+            'habeas_data' => 'required'
+
+        ]);
         $client = new Client();
-        
         $client->name = $request->get('name');
         $client->last_name = $request->get('last_name');
         $client->cedula = $request->get('cedula');
@@ -50,16 +60,10 @@ class ClientController extends Controller
         $client->email = $request->get('email');
         $client->habeas_data = $request->get('habeas_data');
 
-        debug_to_console($request->get('name'));
-        debug_to_console($request->get('last_name'));
-        debug_to_console($request->get('cedula'));
-        debug_to_console($request->get('department'));
-        debug_to_console($request->get('city'));
-        debug_to_console($request->get('phone'));
-        debug_to_console($request->get('email'));
+
         $client->save();
         
-        #return redirect('/client');
+        return redirect('/clients');
         
     }
 
