@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/test', function (){
     return "hey Yocc";
 });
+
+Route::resource('/clients', 'ClientController');
+Route::resource('/inscripcion', 'ClientController');
