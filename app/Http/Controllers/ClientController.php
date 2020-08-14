@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\client;
+use App\Winner;
 class ClientController extends Controller
 {
     /**
@@ -17,18 +18,24 @@ class ClientController extends Controller
         #return view('client', [
         #    "clients"  => Client::All()
         #]);
-        return view('inscription');
+        $winner = new Winner();
+        $winner = Winner::First();
+        
+        
+        if(!is_null ($winner)){
+            $client_id= $winner->client_id;
+            return view('inscription',[
+                "winner" => Winner::First(),
+                "client"  => Client::find($client_id)
+            ]);
+        }else{
+            return view('inscription',[
+                "winner" => Winner::First()
+            ]);
+        }
         
     }
 
-    public function chooseWinner()
-    {
-        
-        return view('chooseWinner', [
-            "clients"  => Client::All()
-        ]);
-        
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -59,6 +66,7 @@ class ClientController extends Controller
             'habeas_data' => 'required'
 
         ]);
+
         $client = new Client();
         $client->name = $request->get('name');
         $client->last_name = $request->get('last_name');
@@ -69,10 +77,9 @@ class ClientController extends Controller
         $client->email = $request->get('email');
         $client->habeas_data = $request->get('habeas_data');
 
-
         $client->save();
         
-        return redirect('/clients');
+        return redirect('/inscripcion');
         
     }
 
@@ -122,10 +129,3 @@ class ClientController extends Controller
     }
 }
 
-function debug_to_console( $data ) {
-    $output = $data;
-    if ( is_array( $output ) )
-        $output = implode( ',', $output);
-
-    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
-}

@@ -17,9 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function (){
-    return "hey Yocc";
-});
 
 Route::resource('/inscripcion', 'ClientController');
-Route::get('/seleccionar_gandor', 'ClientController@chooseWinner');
+Route::resource('/seleccionar_ganador', 'WinnerController');

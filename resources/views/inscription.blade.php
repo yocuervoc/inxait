@@ -1,5 +1,11 @@
 @extends('layouts.base')
 @section('content')
+
+    @if(!is_null ($winner))
+        <h1>Felicidades al ganador</h1>
+        
+        <div>En esta ocacion el afortunado ganador es: {{$client->name}} quien e inscribio el dia {{$client->created_at}}</div>
+    @else
     <h1>Bienvenido</h1>
     <!--<a type="button" class="btn btn-primary" href="/client/create">register Client </a>-->
     <div class = "row">
@@ -19,7 +25,7 @@
                     
                 </ul>
             @endif
-            <form accion="/client" method="POST">
+            <form accion="/inscripcion" method="POST">
                 <div class="form-group">
                     @csrf
                     <input type="text" class= "form-control" id="name" name="name" placeholder="Name" value= "{{old('name')}}">
@@ -35,6 +41,9 @@
                 <button class="btn btn-primary" type="submit" >Submit</button>
             </form>
         </div>
-    </div>   
+    </div>
+    @endif
+
+   
     
 @endsection
