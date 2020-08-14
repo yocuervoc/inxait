@@ -20,3 +20,4 @@ Route::get('/', function () {
 
 Route::resource('/inscripcion', 'ClientController');
 Route::resource('/seleccionar_ganador', 'WinnerController');
+Route::get('/client', 'UsersController@export');
