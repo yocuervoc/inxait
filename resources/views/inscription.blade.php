@@ -5,6 +5,8 @@
         <h1>Felicidades al ganador</h1>
         
         <div>En esta ocacion el afortunado ganador es: {{$client->name}} quien e inscribio el dia {{$client->created_at}}</div>
+        
+        <a class="btn btn-primary" href="/seleccionar_ganador">opciones</a>
     @else
     <h1>Bienvenido</h1>
     <!--<a type="button" class="btn btn-primary" href="/client/create">register Client </a>-->
@@ -24,6 +26,7 @@
                     
                     
                 </ul>
+                
             @endif
             <form accion="/inscripcion" method="POST">
                 <div class="form-group">
@@ -38,10 +41,14 @@
                     <input type="checkbox" id="habeas_data" name="habeas_data" value="1">Autorizo el tratamiento de mis datos de acuerdo con la
 finalidad establecida en la política de protección de datos personales 
                 </div>
-
+                
                 <button class="btn btn-primary" type="submit" >Submit</button>
             </form>
+            <div> -</div>
+            <div><a class="btn btn-primary" href="/seleccionar_ganador">opciones</a></div>
         </div>
+        
+        
     </div>
     @endif
 

@@ -48,15 +48,26 @@ class WinnerController extends Controller
         
         $answer = $request->request->get("name");
         
+        #dd($answer);
 
         if (strcmp ( $answer, "choose_winner" )){
+            if (!strcmp ( $answer, "delete_winner" )){
+                $won = Winner::first();
+                $won->delete();
+                return view('inscription',[
+                    "winner" => Winner::First(),
+                    "client" => Client::First()
+                ]);
+            }
             return redirect('/seleccionar_ganador',$request);
         }else{
             $clients  = Client::All();
+            
             if(count($clients)>=5){
-                $len = count ( $clients );
-                $randonNumber= rand (0 , $len );
+                $len = count ( $clients );              
+                $randonNumber= rand (0 , $len-1 );               
                 $cliente =$clients[$randonNumber];
+                #dd($cliente);
                 $winners = Winner::First();
             
                 if(is_null ($winners)){
@@ -65,6 +76,7 @@ class WinnerController extends Controller
                     $winner->save();
                     return view('inscription',[
                         "winner" => Winner::First(),
+                        "client" => Client::First()
                     ]);
                 }else{
                     return view('chooseWinner');
