@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\client;
+use App\Winner;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,11 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+Route::resource('/','ClientController');
 Route::resource('/inscripcion', 'ClientController');
 Route::resource('/seleccionar_ganador', 'WinnerController');
-Route::get('/client', 'UsersController@export');
+Route::get('/reporte', 'UsersController@export');

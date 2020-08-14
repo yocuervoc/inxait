@@ -47,6 +47,7 @@ class WinnerController extends Controller
         
         
         $answer = $request->request->get("name");
+        
 
         if (strcmp ( $answer, "choose_winner" )){
             return redirect('/seleccionar_ganador',$request);
