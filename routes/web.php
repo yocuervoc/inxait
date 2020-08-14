@@ -21,5 +21,5 @@ Route::get('/test', function (){
     return "hey Yocc";
 });
 
-Route::resource('/clients', 'ClientController');
 Route::resource('/inscripcion', 'ClientController');
+Route::get('/seleccionar_gandor', 'ClientController@chooseWinner');

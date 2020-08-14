@@ -21,6 +21,15 @@ class ClientController extends Controller
         
     }
 
+    public function chooseWinner()
+    {
+        
+        return view('chooseWinner', [
+            "clients"  => Client::All()
+        ]);
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *
