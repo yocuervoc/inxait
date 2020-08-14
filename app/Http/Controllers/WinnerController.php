@@ -52,21 +52,26 @@ class WinnerController extends Controller
             return redirect('/seleccionar_ganador',$request);
         }else{
             $clients  = Client::All();
-            $len = count ( $clients );
-            $randonNumber= rand (0 , $len );
-            $cliente =$clients[$randonNumber];
-            $winners = Winner::First();
+            if(count($clients)>=5){
+                $len = count ( $clients );
+                $randonNumber= rand (0 , $len );
+                $cliente =$clients[$randonNumber];
+                $winners = Winner::First();
             
-            if(is_null ($winners)){
-                $winner = new Winner();
-                $winner->client_id=$cliente->id;
-                $winner->save();
-                return view('inscription',[
-                    "winner" => Winner::First(),
-                ]);
+                if(is_null ($winners)){
+                    $winner = new Winner();
+                    $winner->client_id=$cliente->id;
+                    $winner->save();
+                    return view('inscription',[
+                        "winner" => Winner::First(),
+                    ]);
+                }else{
+                    return view('chooseWinner');
+                }
             }else{
-                return view('chooseWinner');
+                return redirect('/seleccionar_ganador');
             }
+            
         }
         
     }

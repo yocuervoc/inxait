@@ -35,7 +35,8 @@
                     <input type="text" class= "form-control" id="city" name="city" placeholder="City" value= "{{old('city')}}">
                     <input type="text" class= "form-control" id="phone" name="phone" placeholder="Celular" value= "{{old('phone')}}">
                     <input type="text" class= "form-control" id="email" name="email" placeholder="Email" value= "{{old('email')}}">
-                    <input type="text" class= "form-control" id="habeas_data" name="habeas_data" placeholder="Habeas data">
+                    <input type="checkbox" id="habeas_data" name="habeas_data" value="1">Autorizo el tratamiento de mis datos de acuerdo con la
+finalidad establecida en la política de protección de datos personales 
                 </div>
 
                 <button class="btn btn-primary" type="submit" >Submit</button>
